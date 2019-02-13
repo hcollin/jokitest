@@ -1,21 +1,19 @@
 import React from 'react';
 import Joki from '../services/myJoki';
-import { useListenJokiService, trigger } from 'joki';
+import { useService } from 'joki';
+
+import { serviceId, actions } from '../services/redService';
 
 export default function CounterView(props) {
 
-    const [data] = useListenJokiService(Joki, "myService");
+    const [data] = useService(Joki, serviceId);
 
     function more() {
-        trigger(Joki, {
-            eventKey: "plus"            
-        });
+        actions.plus(Joki);
     }
 
     function less() {
-        trigger(Joki, {
-            eventKey: "minus"            
-        });
+        actions.minus(Joki);
     }
 
     return(
